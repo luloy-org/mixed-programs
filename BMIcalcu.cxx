@@ -7,8 +7,8 @@ using namespace std;
 int main(int argc, char *argv[])
 {
 	int weight;
-	double height;
-	double bmi;
+	float height;
+	float bmi;
 	string categ;
 	cout << "BMI Calculator\n";
 	cout << "Weight(kg): ";
