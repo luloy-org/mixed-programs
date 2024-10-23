@@ -12,7 +12,8 @@ map<string, string> Operations = {
 	{"/","Get the quotient of x and y"},
 	{"*","Get the product of x and y"},
 	{"L","Get the natural logarithm of x"},
-	{"P","Raise the value of x to the power of y"}
+	{"P","Raise the value of x to the power of y"},
+	{"S","Get the square root of x"}
 };
 
 int calculate(int x, int y, string choice)
@@ -65,10 +66,10 @@ int main()
 		}
 		//Get x and y
 		cin>>choice;
-		if (choice[0]=='S' or choice[0]=='L'){
+		if (choice[0]=='S' || choice[0]=='L' && choice.length()==0){
 			cout<<"Enter the value of x: ";
 		    cin>>x;
-		} else if (choice[0]=='+' or choice[0]=='-' or choice[0]=='/' or choice[0]=='*' or choice[0]=='P'){
+		} else if (choice[0]=='+' or choice[0]=='-' or choice[0]=='/' or choice[0]=='*' or choice[0]=='P' && choice.length()==0){
 			cout<<"Enter the value of x: ";
 			cin>>x;
 			cout<<"Enter the value of y: ";
@@ -77,16 +78,18 @@ int main()
 			cout<<"Invalid choice\n";
 		}
 		calculate(x,y,choice);
+		//Repeat process until user inputs "Y" or "N"
 		while(true){
 			cout<<"Perform another calculation? Y/N: ";
 			cin>>con;
 			if (con[0]=='Y' or con[0]=='N'){
 				break;
 			} else {
-				cout<<"Cannot understand your input: "<<con[0]<<endl;
+				cout<<con[0]<<"?"<<endl;
 			}
 		}
 		if (con=="N"){
+			cout<<"Bye!!!\n";
 			break;
 		}
 	}
