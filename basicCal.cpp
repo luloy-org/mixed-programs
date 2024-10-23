@@ -20,6 +20,7 @@ int calculate(int x, int y, string choice)
 {
 	//This is where the system process calculation
 	int total;
+	bool error=false;
 	switch(choice[0]){
 		case '+':
 		total=(x+y);//Set the result as the value of total
@@ -44,9 +45,13 @@ int calculate(int x, int y, string choice)
 		break;
 		default:
 		cout<<"An error occured"<<endl;
+		error=true;
 		break;
 	}
-	cout<<"Result: "<<total<<endl;//Display Result
+	//Display result if there's no error'
+	if (error==false){
+		cout<<"Result: "<<total<<endl;
+	}
 }
 
 int main()
@@ -65,11 +70,12 @@ int main()
 			sort++;
 		}
 		//Get x and y
+		cout<<"Input: ";
 		cin>>choice;
 		if ( (choice[0]=='L' || choice[0]=='S') && choice.length()==1){
 			cout<<"Enter the value of x: ";
 		    cin>>x;
-		} else if ((choice[0]=='+' or choice[0]=='-' or choice[0]=='/' or choice[0]=='*' or choice[0]=='p') && choice.length()==1){
+		} else if ((Operations.count(choice)!=0) && choice.length()==1){
 			cout<<"Enter the value of x: ";
 			cin>>x;
 			cout<<"Enter the value of y: ";
@@ -94,3 +100,4 @@ int main()
 		}
 	}
 }
+
