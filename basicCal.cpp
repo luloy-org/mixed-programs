@@ -9,7 +9,7 @@ using namespace std;
 map<string, string> Operations = {
 	{"+", "Get the sum of x and y"},
 	{"-", "Decrease the value of x by y"},
-	{"/","Get the quotient of x and y"},
+	{"/","Divide the value of x to the value of y"},
 	{"*","Get the product of x and y"},
 	{"L","Get the natural logarithm of x"},
 	{"P","Raise the value of x to the power of y"},
@@ -61,15 +61,15 @@ int main()
 		int sort = 1;
 		//List all operations in map, for choices
 		for (auto ope : Operations){
-			cout<<sort<<".( "<<ope.first<<" ) - "<<ope.second<<endl;
+			cout<<sort<<".("<<ope.first<<") - "<<ope.second<<endl;
 			sort++;
 		}
 		//Get x and y
 		cin>>choice;
-		if (choice[0]=='S' || choice[0]=='L' && choice.length()==0){
+		if ( (choice[0]=='L' || choice[0]=='S') && choice.length()==1){
 			cout<<"Enter the value of x: ";
 		    cin>>x;
-		} else if (choice[0]=='+' or choice[0]=='-' or choice[0]=='/' or choice[0]=='*' or choice[0]=='P' && choice.length()==0){
+		} else if ((choice[0]=='+' or choice[0]=='-' or choice[0]=='/' or choice[0]=='*' or choice[0]=='p') && choice.length()==1){
 			cout<<"Enter the value of x: ";
 			cin>>x;
 			cout<<"Enter the value of y: ";
@@ -77,8 +77,8 @@ int main()
 		} else {
 			cout<<"Invalid choice\n";
 		}
-		calculate(x,y,choice);
-		//Repeat process until user inputs "Y" or "N"
+		calculate(x,y, choice);
+		//Repeat process until user entered either "Y" or "N"
 		while(true){
 			cout<<"Perform another calculation? Y/N: ";
 			cin>>con;
