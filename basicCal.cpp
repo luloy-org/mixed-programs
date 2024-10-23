@@ -53,13 +53,14 @@ int calculate(int x, int y, string choice)
 	//Display result if there's no error'
 	if (error==false){
 		cout<<"Result: "<<total<<endl;
-		return 1;
+		return 1;//Return success or failure
 	}
 }
 
 //Input process section
 int main()
 {
+	//Local variable declaration area
 	string choice;
 	string con;
 	int x;
