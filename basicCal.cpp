@@ -16,6 +16,7 @@ map<string, string> Operations = {
 	{"S","Get the square root of x"}
 };
 
+//Calculation section
 int calculate(int x, int y, string choice)
 {
 	//This is where the system process calculation
@@ -46,14 +47,17 @@ int calculate(int x, int y, string choice)
 		default:
 		cout<<"An error occured"<<endl;
 		error=true;
+		return 0;
 		break;
 	}
 	//Display result if there's no error'
 	if (error==false){
 		cout<<"Result: "<<total<<endl;
+		return 1;
 	}
 }
 
+//Input process section
 int main()
 {
 	string choice;
@@ -83,7 +87,14 @@ int main()
 		} else {
 			cout<<"Invalid choice\n";
 		}
-		calculate(x,y, choice);
+		//Catch failure if the user entered letter(s) instead of number
+		if (cin.fail()){
+			cout<<"\nFailure occured, Make sure to input numbers not letters\n";
+			cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+		} else {
+			calculate(x,y,choice);
+		}
 		//Repeat process until user entered either "Y" or "N"
 		while(true){
 			cout<<"Perform another calculation? Y/N: ";
