@@ -1,77 +1,93 @@
-#include<iostream>
-#include<cmath>
-#include<map>
-#include<cstring>
+#include <iostream>
+#include <map>
+#include <cmath>
+#include <string>
 
 using namespace std;
 
-map<string, string> Operators = {
-{"*", "Product of x and y"},
-{"+", "Sum of x and y"},
-{"-", "Subtraction of x and y"},
-{"/", "Quotient of x and y"},
-{"s", "Square root of x"},
-{"l", "Natural logarithm of x"},
-{"p", "Raise the value of x to the value of y"}
+//List of operations for the user to choose
+map<string, string> Operations = {
+	{"+", "Get the sum of x and y"},
+	{"-", "Decrease the value of x by y"},
+	{"/","Get the quotient of x and y"},
+	{"*","Get the product of x and y"},
+	{"L","Get the natural logarithm of x"},
+	{"P","Raise the value of x to the power of y"}
 };
 
-int calculate (int x,int y,char ope)
+int calculate(int x, int y, string choice)
 {
-    int total;
-    switch(ope) {
-    case '+':
-        total = x+y;
-        break;
-    case '-':
-        total = x-y;
-        break;
-    case '*':
-        total = x*y;
-        break;
-    case '/':
-        total = x/y;
-        break;
-    case 's':
-        total = sqrt(x);
-        break;
-    case 'l':
-        total = log(x);
-        break;
-    case 'p':
-        total = pow(x,y);
-        break;
-    default:
-        cout << "Error calculating two numbers";
-        return 0;
-        break;
-    }
-
-    cout << "Total: " << total;
-    return 0;
+	//This is where the system process calculation
+	int total;
+	switch(choice[0]){
+		case '+':
+		total=(x+y);//Set the result as the value of total
+		break;
+		case '-':
+		total=(x-y);
+		break;
+		case '/':
+		total=(x/y);
+		break;
+		case '*':
+		total=(x*y);
+		break;
+		case 'L':
+		total=(log(x));
+		break;
+		case 'P':
+		total=(pow(x,y));
+		break;
+		case 'S':
+		total=(sqrt(x));
+		break;
+		default:
+		cout<<"An error occured"<<endl;
+		break;
+	}
+	cout<<"Result: "<<total<<endl;//Display Result
 }
 
 int main()
 {
-    int u1;
-    int u2;
-    char ope;
-    cout << "What mathematical operation you want to use?\n";
-    cout << "choose 1:\n";
-    for (auto op : Operators){
-    cout << " [" << op.first << "] = " << op.second << "\n";
-    };
-    cout<<"Operation: ";
-    cin>>ope;
-    if (ope=='s' or ope=='l'){
-    cout<<"Input the value of x: ";
-    cin>>u1;
-    calculate(u1,0,ope);
-    } else {
-    cout<<"Enter the value of x: ";
-    cin>>u1;
-    cout<<"Enter the value of y: ";
-    cin>>u2;
-    calculate(u1,u2,ope);
-    }
-    return 0;
+	string choice;
+	string con;
+	int x;
+	int y;
+	while (true){
+		//Starting point
+		cout<<"Choose operation: \n";
+		int sort = 1;
+		//List all operations in map, for choices
+		for (auto ope : Operations){
+			cout<<sort<<".( "<<ope.first<<" ) - "<<ope.second<<endl;
+			sort++;
+		}
+		//Get x and y
+		cin>>choice;
+		if (choice[0]=='S' or choice[0]=='L'){
+			cout<<"Enter the value of x: ";
+		    cin>>x;
+		} else if (choice[0]=='+' or choice[0]=='-' or choice[0]=='/' or choice[0]=='*' or choice[0]=='P'){
+			cout<<"Enter the value of x: ";
+			cin>>x;
+			cout<<"Enter the value of y: ";
+			cin>>y;
+		} else {
+			cout<<"Invalid choice\n";
+		}
+		calculate(x,y,choice);
+		while(true){
+			cout<<"Perform another calculation? Y/N: ";
+			cin>>con;
+			if (con[0]=='Y' or con[0]=='N'){
+				break;
+			} else {
+				cout<<"Cannot understand your input: "<<con[0]<<endl;
+			}
+		}
+		if (con=="N"){
+			break;
+		}
+	}
 }
