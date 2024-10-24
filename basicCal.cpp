@@ -156,7 +156,7 @@ int main()
             cout << "\n"
                     "Failure occured, Make sure to input numbers not letters\n";
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            /*cin.ignore(numeric_limits<streamsize>::max(), '\n');*/
         }
         else
         {
