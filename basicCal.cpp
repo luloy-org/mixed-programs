@@ -6,6 +6,7 @@
 using namespace std;
 // This is a prototype console calculator
 // I will soon try to use classes to decrease the numbers of line as much as possible
+// This program is made to catch any possible errors that will stop the program from running, basically to avoid run time error
 
 // [ Global Declaration Area ]
 
