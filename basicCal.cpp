@@ -2,7 +2,7 @@
 #include <map>
 #include <cmath>
 #include <string>
-#include <conio.h>
+
 using namespace std;
 // This is a prototype console calculator
 // I will soon try to use classes to decrease the numbers of line as much as possible
@@ -23,8 +23,8 @@ map<string, string> Operations = {
     {"s", "Sin of x"},
     {"c", "Cos of x"},
     {"t", "Tan of x"},
-    {"E", "Exit calculator"},
-    {"R", "Clear output"}};
+    {"E", "Exit calculator"}
+};
 
 map<string, string> Logs = {};
 
@@ -72,9 +72,6 @@ int calculate(double x, double y, string choice)
         break;
     case 'V':
         error = true;// Tells the system whether it will show result or not
-        break;
-    case 'R':
-        error = true;
         break;
     default:
         cout << "An error occured" << endl;
@@ -124,12 +121,6 @@ int main()
             //For single number calculation
             cout << "Enter the value of x: ";
             cin >> x;
-        }
-        else if (choice == "R" && choice.length() == 1)
-        {
-            //Clear output
-            cout << "Output cleared\n";
-            clrscr();
         }
         else if (choice == "V" && choice.length() == 1)
         {
