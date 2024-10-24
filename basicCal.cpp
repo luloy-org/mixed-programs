@@ -3,8 +3,11 @@
 #include <cmath>
 #include <string>
 #include <conio.h>
-
 using namespace std;
+// This is a prototype console calculator
+// I will soon try to use classes to decrease the numbers of line as much as possible
+
+// [ Global Declaration Area ]
 
 //List of operations for the user to choose
 map<string, string> Operations = {
@@ -28,6 +31,7 @@ map<string, string> Logs = {};
 //Calculation section
 int calculate(double x, double y, string choice)
 {
+    // [ Local Declaration Area ]
     //This is where the system process calculation
     double total;
     bool error = false;
@@ -67,7 +71,7 @@ int calculate(double x, double y, string choice)
         total = (tan(x));
         break;
     case 'V':
-        error = true;
+        error = true;// Tells the system wether it will show result or not
         break;
     case 'R':
         error = true;
@@ -82,6 +86,7 @@ int calculate(double x, double y, string choice)
     if (error == false)
     {
         cout << "Result: " << total << endl;
+        // Add log to logs for the user to view recent calculations
         string sx = " x: " + to_string(x) + " |";
         string sy = " y: " + to_string(y) + " |";
         string result = " Result: " + to_string(total) + " |";
@@ -94,15 +99,16 @@ int calculate(double x, double y, string choice)
 //Input process section
 int main()
 {
-    string choice;
-    string con;
-    double x;
-    double y;
+    //Preparation section
+    string choice;// String variable for choice
+    string con; // String variable for Y/N
+    double x;// First Number
+    double y;// Second Number
     while (true)
     {
         //Starting point
         cout << "Choose operation: \n";
-        int sort = 1;
+        int sort = 1;//Assign numbers per choices
         //List all operations in map, for choices
         for (auto ope : Operations)
         {
@@ -112,18 +118,22 @@ int main()
         //Get x and y
         cout << "Choice: ";
         cin >> choice;
-        if ((choice[0] == 'L' || choice[0] == 'S' || choice[0] == 'O') && choice.length() == 1)
+        
+        if ((choice[0] == 'L' || choice[0] == 'S' || choice[0] == 'O') && choice.length() == 1)//Using if and else statement to ignore unexpected inputs that will cause an error
         {
+            //For single number calculation
             cout << "Enter the value of x: ";
             cin >> x;
         }
         else if (choice == "R" && choice.length() == 1)
         {
+            //Clear output
             cout << "Output cleared\n";
             clrscr();
         }
         else if (choice == "V" && choice.length() == 1)
         {
+            //Show logs
             cout << "Performed calculations log: \n";
             for (auto log : Logs)
             {
@@ -132,11 +142,13 @@ int main()
         }
         else if (choice == "E" && choice.length() == 1)
         {
+            //Exit calculator
             cout << "Bye!! :)" << endl;
             break;
         }
         else if ((Operations.count(choice) != 0) && choice.length() == 1)
         {
+            //For two sets of numbers
             cout << "Enter the value of x: ";
             cin >> x;
             cout << "Enter the value of y: ";
@@ -147,6 +159,7 @@ int main()
             cout << "Invalid choice\n";
         }
         //Catch failure if the user entered letter(s) instead of number
+        //Also to prevent the program to repeat continuosly
         if (cin.fail() && choice != "V")
         {
             cout << "\n"
@@ -156,6 +169,7 @@ int main()
         }
         else
         {
+            // Continue to calculation if the user inputs the expected data type for x and y
             calculate(x, y, choice);
         }
         //Repeat process until user entered either "Y" or "N"
@@ -169,11 +183,13 @@ int main()
             }
             else
             {
+                //Show unexpected inputs
                 cout << con[0] << "?" << endl;
             }
         }
         if (con == "N")
         {
+            //Exit calculator
             cout << "Bye!!!\n";
             break;
         }
