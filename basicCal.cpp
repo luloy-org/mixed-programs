@@ -1,3 +1,4 @@
+//Console calculator attemp - 1
 #include <iostream>
 #include <map>
 #include <cmath>
