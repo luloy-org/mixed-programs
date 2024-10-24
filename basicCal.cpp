@@ -71,7 +71,7 @@ int calculate(double x, double y, string choice)
         total = (tan(x));
         break;
     case 'V':
-        error = true;// Tells the system wether it will show result or not
+        error = true;// Tells the system whether it will show result or not
         break;
     case 'R':
         error = true;
