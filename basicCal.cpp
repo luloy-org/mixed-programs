@@ -1,12 +1,12 @@
-//Console calculator attemp - 1
 #include <iostream>
 #include <map>
 #include <cmath>
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 // This is a prototype console calculator
-// This program was made to catch any possible errors that will stop the program from running, basically to avoid run time error
+// I will soon try to use classes to decrease the numbers of line as much as possible
 
 // [ Global Declaration Area ]
 
@@ -75,7 +75,6 @@ int calculate(double x, double y, string choice)
         error = true;// Tells the system whether it will show result or not
         break;
     default:
-        cout << "An error occured" << endl;
         error = true;
         return 0;
         break;
@@ -105,6 +104,7 @@ int main()
     while (true)
     {
         //Starting point
+        system("clear");
         cout << "Choose operation: \n";
         int sort = 1;//Assign numbers per choices
         //List all operations in map, for choices
@@ -116,7 +116,7 @@ int main()
         //Get x and y
         cout << "Choice: ";
         cin >> choice;
-        
+        system("clear");
         if ((choice[0] == 'L' || choice[0] == 'S' || choice[0] == 'O') && choice.length() == 1)//Using if and else statement to ignore unexpected inputs that will cause an error
         {
             //For single number calculation
@@ -154,10 +154,11 @@ int main()
         //Also to prevent the program to repeat continuosly
         if (cin.fail() && choice != "V")
         {
-            cout << "\n"
-                    "Failure occured, Make sure to input numbers not letters\n";
+            system("clear");
             cin.clear();
-            /*cin.ignore(numeric_limits<streamsize>::max(), '\n');*/
+            cout <<
+                    "Failure occured, Make sure to input numbers not letters\n";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
         else
         {
@@ -169,7 +170,7 @@ int main()
         {
             cout << "Perform another calculation? Y/N: ";
             cin >> con;
-            if (con[0] == 'Y' or con[0] == 'N')
+            if (tolower(con[0]) == 'y' or tolower(con[0]) == 'n')
             {
                 break;
             }
@@ -182,7 +183,9 @@ int main()
         if (con == "N")
         {
             //Exit calculator
+            system("clear");
             cout << "Bye!!!\n";
+            cout<<"C++ Calculator by: reymart\n";
             break;
         }
     }
