@@ -8,7 +8,7 @@
 using namespace std;
 const int c = 35;
 const int r = 35;
-const int onVal = 5;
+const int onVal = 1;
 const int offVal = 0;
 bool rendering = true;
 
@@ -34,9 +34,12 @@ class square {
         int leftBorder;
         int rightBorder;
         leftBorder=(ps[1]-sc[0]);
-        rightBorder=(ps[1]+sc[1]);
+        rightBorder=(ps[1]+sc[0]);
         
-        
+        for (int count = 0; count < sc[0]; count++){
+            matrix[ps[0]][leftBorder+count]=onVal;
+            matrix[ps[0]][rightBorder-count]=onVal;
+        }
         matrix[ps[0]][leftBorder]=onVal;
         matrix[ps[0]][rightBorder]=onVal;
         matrix[ps[0]][ps[1]]=onVal;
@@ -51,7 +54,7 @@ int main() {
     square sq;
 
     sq.position((c/2), (r/2));
-    sq.scale(2,2);
+    sq.scale(3,3);
     
     // Display the initial matrix
     while(rendering){
@@ -61,7 +64,7 @@ int main() {
         cout<<"Matrix: \n";
     for (const auto& row : matrix) {
         for (int elem : row) {
-            std::cout << elem << " ";
+            std::cout << (elem==onVal?"0":"-") << "-";
         }
         std::cout << std::endl;
     }
